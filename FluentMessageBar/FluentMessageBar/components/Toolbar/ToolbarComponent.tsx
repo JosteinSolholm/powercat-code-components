@@ -76,7 +76,7 @@ export const ToolbarComponent = React.memo((props: CustomToolbarProps) => {
                 },
             };
 
-            const toolbarButton = (
+            const toolbarButtonProps = (
                 <ToolbarButton {...buttonProps} className={styles.content}>
                     <span
                         style={{
@@ -96,10 +96,10 @@ export const ToolbarComponent = React.memo((props: CustomToolbarProps) => {
                 <OverflowItem key={item.key} id={item.key}>
                     {item.tooltip ? (
                         <Tooltip content={item.tooltip} relationship="description" withArrow>
-                            {toolbarButton}
+                            {toolbarButtonProps}
                         </Tooltip>
                     ) : (
-                        toolbarButton
+                        toolbarButtonProps
                     )}
                 </OverflowItem>
             );
