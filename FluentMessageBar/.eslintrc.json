@@ -26,15 +26,13 @@
     "@typescript-eslint",
     "sonarjs"
   ],
-  "ignorePatterns": ["**/generated/*.ts"],
+  "ignorePatterns": [
+    "**/generated/*.ts"
+  ],
   "rules": {
     "indent": [
       "error",
       4
-    ],
-    "linebreak-style": [
-      "error",
-      "windows"
     ],
     "quotes": [
       "error",

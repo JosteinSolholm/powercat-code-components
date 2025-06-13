@@ -18,7 +18,7 @@
     <property name="URL" display-name-key="URL_Key" description-key="link that appears in the message bar." of-type="SingleLine.Text" usage="input" required="false" />
     <property name="AutoHeight" display-name-key="Messagebar_AutoHeight_Display_Key" description-key="Messagebar_AutoHeight_Display_Key" usage="output" of-type="Whole.None" />
     <property name="HideDismiss" display-name-key="Messagebar_HideDismiss_Display_Key" of-type="TwoOptions" usage="input" required="true" default-value="false" />
-    <common-property name="Width" default-value="500" />
+    <common-property name="Width" default-value="350" />
     <common-property name="Height" default-value="55" pfx-default-value="Self.AutoHeight" />
     <!-- -->
     <data-set name="Items" display-name-key="Messagebar_Toolbar_Items_Display_Key" description-key="Messagebar_Toolbar_Items_Desc_Key" pfx-default-value="Table(&#xD;&#xA;    {ItemKey: &quot;mail&quot;, ItemDisplayName: &quot;Contact&quot;, ItemIconName: &quot;Mail&quot;, ItemAppearance: &quot;&quot;, ItemIconStyle: &quot;Regular&quot;, ItemTooltip: &quot;Send mail&quot;, ItemVisible: true, ItemDisabled: false},{ItemKey: &quot;chat&quot;, ItemDisplayName: &quot;Chat&quot;, ItemIconName: &quot;Chat&quot;, ItemAppearance: &quot;&quot;, ItemIconStyle: &quot;Regular&quot;, ItemTooltip: &quot;Chat&quot;})">
