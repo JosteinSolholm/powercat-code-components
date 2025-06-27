@@ -27,15 +27,24 @@ export const ToolbarComponent = React.memo((props: CustomToolbarProps) => {
             },
         };
 
-        return (
-            <Toolbar aria-label={ariaLabel} style={{ gap: 'var(--spacingHorizontalM)', padding: 0 }}>
-                <ToolbarButton {...buttonProps} className={styles.content}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacingHorizontalSNudge)' }}>
-                        {iconToRender}
-                        {item.name}
-                    </span>
-                </ToolbarButton>
-            </Toolbar>
+        const toolbarButton = (<Toolbar aria-label={ariaLabel} style={{ gap: 'var(--spacingHorizontalM)', padding: 0 }}>
+            <ToolbarButton {...buttonProps} className={styles.content}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacingHorizontalSNudge)' }}>
+                    {iconToRender}
+                    {item.name}
+                </span>
+            </ToolbarButton>
+        </Toolbar>);
+
+        return (<>
+            {item.tooltip ? (
+                <Tooltip content={item.tooltip} relationship="description" withArrow>
+                    {toolbarButton}
+                </Tooltip>
+            ) : (
+                toolbarButton
+            )
+            }</>
         );
     }
 
@@ -67,7 +76,7 @@ export const ToolbarComponent = React.memo((props: CustomToolbarProps) => {
                 },
             };
 
-            const toolbarButton = (
+            const toolbarButtonProps = (
                 <ToolbarButton {...buttonProps} className={styles.content}>
                     <span
                         style={{
@@ -87,10 +96,10 @@ export const ToolbarComponent = React.memo((props: CustomToolbarProps) => {
                 <OverflowItem key={item.key} id={item.key}>
                     {item.tooltip ? (
                         <Tooltip content={item.tooltip} relationship="description" withArrow>
-                            {toolbarButton}
+                            {toolbarButtonProps}
                         </Tooltip>
                     ) : (
-                        toolbarButton
+                        toolbarButtonProps
                     )}
                 </OverflowItem>
             );
