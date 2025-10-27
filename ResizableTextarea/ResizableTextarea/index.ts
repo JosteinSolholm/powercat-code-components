@@ -303,8 +303,14 @@ export class ResizableTextarea implements ComponentFramework.StandardControl<IIn
   };
 
   onTextChanged = (ev: Event): void => {
-    this.state.text = (ev.target as HTMLTextAreaElement).value;
-    this.raiseNotifyOutputChanged({ text: true });
+    const value = (ev.target as HTMLTextAreaElement).value;
+    if (this.state.text !== value) {
+      this.state.text = value;
+      // Schedule the notification after the current event loop
+      Promise.resolve().then(() => {
+        this.raiseNotifyOutputChanged({ text: true });
+      });
+    }
   };
 
   mouseEnter = (): void => {
@@ -330,6 +336,14 @@ export class ResizableTextarea implements ComponentFramework.StandardControl<IIn
   private raiseNotifyOutputChanged(outputsChanged: OutputParameterFlags) {
     // Merge outputs changed
     this.outputs = { ...this.outputs, ...outputsChanged };
-    this.notifyOutputChanged();
+    
+    // Debounce style-related updates during text input
+    if (outputsChanged.text) {
+      requestAnimationFrame(() => {
+        this.notifyOutputChanged();
+      });
+    } else {
+      this.notifyOutputChanged();
+    }
   }
 }
